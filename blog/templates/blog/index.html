@@ -1,9 +1,42 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
     My Blog
 {% endblock %}
 
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "blog/post.css" %}">
+    <link rel="stylesheet" href="{% static "blog/index.css" %}">
+{% endblock %}
+
 {% block content %} 
-    <h1> Welcome to my blog </h1>
+
+    <section id="welcome">
+        <header>
+            <img src="{% static "blog/images/tulio.jpg" %}" alt="Tulio - Author of the blog" />
+            <h2>TULIO'S BLOG </h2>
+        </header>
+        <p>Hi, I'm Tulio and I'm doing this projeto to remember some Django fundamentals</p>
+    </section>
+
+    <section id="latest-posts">
+        <h2>My Latest Thoughts</h2>
+
+        <ul>
+            {% for post in posts %}
+                {% include "blog/includes/post.html" %}
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section id="about">
+        <h2>About me</h2>
+        <p>
+            I like to watch movies, TV series, play video games and I enjoy exploring new technologies.
+        </p>
+        <p>
+            My goal is to be a great software engineer, capable of work in any company in the world.
+        </p>
+    </section>
 {% endblock %}
